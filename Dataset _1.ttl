@@ -1,0 +1,554 @@
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+
+<https://sws.geonames.org/10210938/> a gn:Feature ;
+    gn:name "Mālhanwāra" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10210938/about.rdf> .
+
+<https://sws.geonames.org/10214042/> a gn:Feature ;
+    gn:name "Survīr Hill" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10214042/about.rdf> .
+
+<https://sws.geonames.org/10214043/> a gn:Feature ;
+    gn:name "Ghogra" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10214043/about.rdf> .
+
+<https://sws.geonames.org/10214044/> a gn:Feature ;
+    gn:name "Kukrāchiman" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10214044/about.rdf> .
+
+<https://sws.geonames.org/10214045/> a gn:Feature ;
+    gn:name "Morānd Hill" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10214045/about.rdf> .
+
+<https://sws.geonames.org/10469274/> a gn:Feature ;
+    gn:name "Kotalbarri" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10469274/about.rdf> .
+
+<https://sws.geonames.org/10469275/> a gn:Feature ;
+    gn:name "Bijepāni" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10469275/about.rdf> .
+
+<https://sws.geonames.org/10469284/> a gn:Feature ;
+    gn:name "Dholpur" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10469284/about.rdf> .
+
+<https://sws.geonames.org/10542042/> a gn:Feature ;
+    gn:name "Bhānādehi" ;
+    gn:nearby <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/10542042/about.rdf> .
+
+<https://sws.geonames.org/1168579/> a gn:Feature ;
+    gn:name "Pakistan" ;
+    gn:neighbour <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1168579/about.rdf> .
+
+<https://sws.geonames.org/12096464/> a gn:Feature ;
+    gn:name "Ladakh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/12096464/about.rdf> .
+
+<https://sws.geonames.org/1210997/> a gn:Feature ;
+    gn:name "Bangladesh" ;
+    gn:neighbour <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1210997/about.rdf> .
+
+<https://sws.geonames.org/12165662/> a gn:Feature ;
+    gn:name "Dadra and Nagar Haveli and Daman and Diu" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/12165662/about.rdf> .
+
+<https://sws.geonames.org/1252634/> a gn:Feature ;
+    gn:name "Bhutan" ;
+    gn:neighbour <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1252634/about.rdf> .
+
+<https://sws.geonames.org/1252881/> a gn:Feature ;
+    gn:name "West Bengal" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1252881/about.rdf> .
+
+<https://sws.geonames.org/1253626/> a gn:Feature ;
+    gn:name "Uttar Pradesh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1253626/about.rdf> .
+
+<https://sws.geonames.org/1254169/> a gn:Feature ;
+    gn:name "Tripura" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1254169/about.rdf> .
+
+<https://sws.geonames.org/1254788/> a gn:Feature ;
+    gn:name "Telangana" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1254788/about.rdf> .
+
+<https://sws.geonames.org/1255053/> a gn:Feature ;
+    gn:name "Tamil Nadu" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1255053/about.rdf> .
+
+<https://sws.geonames.org/1256312/> a gn:Feature ;
+    gn:name "Sikkim" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1256312/about.rdf> .
+
+<https://sws.geonames.org/1258899/> a gn:Feature ;
+    gn:name "Rajasthan" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1258899/about.rdf> .
+
+<https://sws.geonames.org/1259223/> a gn:Feature ;
+    gn:name "Punjab" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1259223/about.rdf> .
+
+<https://sws.geonames.org/1259424/> a gn:Feature ;
+    gn:name "Puducherry" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1259424/about.rdf> .
+
+<https://sws.geonames.org/1261029/> a gn:Feature ;
+    gn:name "Odisha" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1261029/about.rdf> .
+
+<https://sws.geonames.org/1262271/> a gn:Feature ;
+    gn:name "Nagaland" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1262271/about.rdf> .
+
+<https://sws.geonames.org/1262963/> a gn:Feature ;
+    gn:name "Mizoram" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1262963/about.rdf> .
+
+<https://sws.geonames.org/1263207/> a gn:Feature ;
+    gn:name "Meghalaya" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1263207/about.rdf> .
+
+<https://sws.geonames.org/1263706/> a gn:Feature ;
+    gn:name "Manipur" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1263706/about.rdf> .
+
+<https://sws.geonames.org/1264418/> a gn:Feature ;
+    gn:name "Maharashtra" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1264418/about.rdf> .
+
+<https://sws.geonames.org/1264542/> a gn:Feature ;
+    gn:name "Madhya Pradesh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1264542/about.rdf> .
+
+<https://sws.geonames.org/1265206/> a gn:Feature ;
+    gn:name "Lakshadweep" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1265206/about.rdf> .
+
+<https://sws.geonames.org/1267254/> a gn:Feature ;
+    gn:name "Kerala" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1267254/about.rdf> .
+
+<https://sws.geonames.org/1267701/> a gn:Feature ;
+    gn:name "Karnataka" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1267701/about.rdf> .
+
+<https://sws.geonames.org/1269320/> a gn:Feature ;
+    gn:name "Jammu and Kashmir" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1269320/about.rdf> .
+
+<https://sws.geonames.org/1270101/> a gn:Feature ;
+    gn:name "Himachal Pradesh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1270101/about.rdf> .
+
+<https://sws.geonames.org/1270260/> a gn:Feature ;
+    gn:name "Haryana" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1270260/about.rdf> .
+
+<https://sws.geonames.org/1270770/> a gn:Feature ;
+    gn:name "Gujarat" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1270770/about.rdf> .
+
+<https://sws.geonames.org/1271157/> a gn:Feature ;
+    gn:name "Goa" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1271157/about.rdf> .
+
+<https://sws.geonames.org/1273293/> a gn:Feature ;
+    gn:name "Delhi" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1273293/about.rdf> .
+
+<https://sws.geonames.org/1274744/> a gn:Feature ;
+    gn:name "Chandigarh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1274744/about.rdf> .
+
+<https://sws.geonames.org/1275715/> a gn:Feature ;
+    gn:name "Bihar" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1275715/about.rdf> .
+
+<https://sws.geonames.org/1278253/> a gn:Feature ;
+    gn:name "Assam" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1278253/about.rdf> .
+
+<https://sws.geonames.org/1278341/> a gn:Feature ;
+    gn:name "Arunachal Pradesh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1278341/about.rdf> .
+
+<https://sws.geonames.org/1278629/> a gn:Feature ;
+    gn:name "Andhra Pradesh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1278629/about.rdf> .
+
+<https://sws.geonames.org/1278647/> a gn:Feature ;
+    gn:name "Andaman and Nicobar" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1278647/about.rdf> .
+
+<https://sws.geonames.org/1282988/> a gn:Feature ;
+    gn:name "Nepal" ;
+    gn:neighbour <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1282988/about.rdf> .
+
+<https://sws.geonames.org/1327865/> a gn:Feature ;
+    gn:name "Myanmar" ;
+    gn:neighbour <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1327865/about.rdf> .
+
+<https://sws.geonames.org/1444364/> a gn:Feature ;
+    gn:name "Chhattisgarh" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1444364/about.rdf> .
+
+<https://sws.geonames.org/1444365/> a gn:Feature ;
+    gn:name "Jharkhand" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1444365/about.rdf> .
+
+<https://sws.geonames.org/1444366/> a gn:Feature ;
+    gn:name "Uttarakhand" ;
+    gn:parentFeature <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1444366/about.rdf> .
+
+<https://sws.geonames.org/1814991/> a gn:Feature ;
+    gn:name "China" ;
+    gn:neighbour <https://sws.geonames.org/1269750/> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1814991/about.rdf> .
+
+<https://sws.geonames.org/1269750/about.rdf> a foaf:Document ;
+    cc:attributionName "GeoNames"^^<https://www.w3.org/2001/XMLSchema#string> ;
+    cc:attributionURL <https://www.geonames.org> ;
+    cc:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2006-01-15"^^<https://www.w3.org/2001/XMLSchema#date> ;
+    dcterms:modified "2021-08-16"^^<https://www.w3.org/2001/XMLSchema#date> ;
+    foaf:primaryTopic <https://sws.geonames.org/1269750/> .
+
+<https://sws.geonames.org/1269750/> a gn:Feature ;
+    gn:alternateName "Bharat",
+        "India",
+        "Republic of India",
+        "India"@ab,
+        "India"@an,
+        "India"@ang,
+        "India"@arc,
+        "ভারত"@as,
+        "India"@ast,
+        "India"@av,
+        "India"@ay,
+        "India"@ba,
+        "Һиндостан"@ba,
+        "भारत"@bh,
+        "India"@bi,
+        "India"@bm,
+        "India"@bo,
+        "ভারত"@bpy,
+        "India"@bug,
+        "India"@ce,
+        "Indiya"@ceb,
+        "India"@ch,
+        "India"@cho,
+        "India"@chr,
+        "India"@chy,
+        "India"@co,
+        "India"@cr,
+        "Indie"@csb,
+        "Инди"@cv,
+        "Hindıstan"@diq,
+        "ހިންދުސްތާން"@dv,
+        "India"@dz,
+        "India"@ee,
+        "Barato"@eo,
+        "Bharato"@eo,
+        "Hinda Unio"@eo,
+        "Hindio"@eo,
+        "Unión India"@es,
+        "India"@fj,
+        "Ende"@frp,
+        "Indie"@fur,
+        "Yndia"@fy,
+        "India - भारत"@gl,
+        "India"@gn,
+        "Yn Injey"@gv,
+        "India"@ha,
+        "ʻInia"@haw,
+        "Indija"@hbs,
+        "India"@ho,
+        "Indiska"@hsb,
+        "End"@ht,
+        "India"@hz,
+        "India"@ie,
+        "India"@ilo,
+        "India"@io,
+        "ᐃᓐᑎᐊ"@iu,
+        "xingu'e"@jbo,
+        "India"@jv,
+        "India"@kg,
+        "India"@kj,
+        "Inndije"@ksh,
+        "India"@kv,
+        "India"@ky,
+        "India"@la,
+        "India"@lg,
+        "India"@li,
+        "India"@lij,
+        "India"@lmo,
+        "India"@ln,
+        "India"@lo,
+        "India"@mg,
+        "India"@mh,
+        "Hindia"@ms,
+        "India"@mus,
+        "India"@my,
+        "India"@na,
+        "Indiyān"@nah,
+        "Innia"@nap,
+        "Indien"@nds,
+        "India"@ng,
+        "India"@nn,
+        "India"@nov,
+        "Înde"@nrm,
+        "India"@nv,
+        "India"@ny,
+        "Indii"@olo,
+        "India"@pam,
+        "India"@pap,
+        "India"@pdc,
+        "भारत"@pi,
+        "India"@pih,
+        "India"@pms,
+        "Barat"@qu,
+        "Indiya"@qu,
+        "Indiya"@rmy,
+        "India"@rn,
+        "Индия"@ro,
+        "Энэтхэг"@ro,
+        "भारत"@sa,
+        "Ìndia"@sc,
+        "Innia"@scn,
+        "Indie"@sco,
+        "India"@sd,
+        "India"@sg,
+        "India"@sm,
+        "India"@sq,
+        "India"@ss,
+        "India"@st,
+        "భారత దేశము"@te,
+        "Índia"@tet,
+        "ประเทศอินเดีย"@th,
+        "India"@ti,
+        "India"@tl,
+        "India"@tpi,
+        "India"@ts,
+        "Hindstan"@tt,
+        "India"@tum,
+        "India"@tw,
+        "’Inītia"@ty,
+        "Индия"@udm,
+        "Ҳиндистон"@uz,
+        "India"@ve,
+        "India"@vec,
+        "India"@vo,
+        "Inde"@wa,
+        "India"@war,
+        "India"@wo,
+        "印度"@wuu,
+        "India"@xal,
+        "India"@xh,
+        "India"@za,
+        "India"@zu ;
+    gn:childrenFeatures <https://sws.geonames.org/1269750/contains.rdf> ;
+    gn:countryCode "IN" ;
+    gn:featureClass <https://www.geonames.org/ontology#A> ;
+    gn:featureCode <https://www.geonames.org/ontology#A.PCLI> ;
+    gn:locationMap <https://www.geonames.org/1269750/republic-of-india.html> ;
+    gn:name "India" ;
+    gn:neighbouringFeatures <https://sws.geonames.org/1269750/neighbours.rdf> ;
+    gn:officialName "India"@aa,
+        "Indië"@af,
+        "India"@ak,
+        "ህንድ"@am,
+        "الهند"@ar,
+        "ভাৰত"@as,
+        "Hindistan"@az,
+        "Індыя"@be,
+        "Индия"@bg,
+        "Ɛndujamana"@bm,
+        "ভারত"@bn,
+        "རྒྱ་གར་"@bo,
+        "India"@br,
+        "Indija"@bs,
+        "Índia"@ca,
+        "ХӀинди"@ce,
+        "Indie"@cs,
+        "India"@cy,
+        "Indien"@da,
+        "Indien"@de,
+        "རྒྱ་གར"@dz,
+        "India nutome"@ee,
+        "Ινδία"@el,
+        "India"@en,
+        "Hindujo"@eo,
+        "India"@es,
+        "India"@et,
+        "India"@eu,
+        "هند"@fa,
+        "Enndo"@ff,
+        "Intia"@fi,
+        "India"@fo,
+        "Inde"@fr,
+        "India"@fy,
+        "an India"@ga,
+        "Na h-Innseachan"@gd,
+        "A India"@gl,
+        "ભારત"@gu,
+        "Indiya"@ha,
+        "הודו"@he,
+        "भारत"@hi,
+        "Indija"@hr,
+        "India"@hu,
+        "Հնդկաստան"@hy,
+        "India"@ia,
+        "India"@id,
+        "India"@ig,
+        "ꑴꄗ"@ii,
+        "Indland"@is,
+        "India"@it,
+        "インド"@ja,
+        "Indhia"@jv,
+        "ინდოეთი"@ka,
+        "India"@ki,
+        "Индия"@kk,
+        "Үндістан"@kk,
+        "India"@kl,
+        "ឥណ្ឌា"@km,
+        "ಭಾರತ"@kn,
+        "인도"@ko,
+        "ہِندوستان"@ks,
+        "Hindistan"@ku,
+        "ھیندستان"@ku,
+        "Eynda"@kw,
+        "Индия"@ky,
+        "Indien"@lb,
+        "Buyindi"@lg,
+        "Índɛ"@ln,
+        "ອິນເດຍ"@lo,
+        "Indija"@lt,
+        "Inde"@lu,
+        "Indija"@lv,
+        "Indy"@mg,
+        "Inia"@mi,
+        "Индија"@mk,
+        "ഇന്ത്യ"@ml,
+        "Энэтхэг"@mn,
+        "भारत"@mr,
+        "India"@ms,
+        "l-Indja"@mt,
+        "အိန္ဒိယ"@my,
+        "India"@nb,
+        "Indiya"@nd,
+        "भारत"@ne,
+        "India"@nl,
+        "India"@no,
+        "Índia"@oc,
+        "India"@om,
+        "ଭାରତ"@or,
+        "Инди"@os,
+        "ਭਾਰਤ"@pa,
+        "Indie"@pl,
+        "هند"@ps,
+        "Índia"@pt,
+        "India"@qu,
+        "India"@rm,
+        "Ubuhindi"@rn,
+        "India"@ro,
+        "Индия"@ru,
+        "भारतः"@sa,
+        "ڀارت"@sd,
+        "India"@se,
+        "Ênnde"@sg,
+        "ඉන්දියාව"@si,
+        "India"@sk,
+        "Indija"@sl,
+        "India"@sn,
+        "Hindiya"@so,
+        "Indi"@sq,
+        "Индија"@sr,
+        "India"@su,
+        "Indien"@sv,
+        "India"@sw,
+        "இந்தியா"@ta,
+        "భారతదేశం"@te,
+        "Ҳиндустон"@tg,
+        "อินเดีย"@th,
+        "ህንዲ"@ti,
+        "Hindistan"@tk,
+        "ʻInitia"@to,
+        "Hindistan"@tr,
+        "Индия"@tt,
+        "ھىندىستان"@ug,
+        "Індія"@uk,
+        "انڈیا"@ur,
+        "بھارت"@ur,
+        "Hindiston"@uz,
+        "Ấn Độ"@vi,
+        "End"@wo,
+        "אינדיע"@yi,
+        "India"@yo,
+        "Orílẹ́ède India"@yo,
+        "印度"@zh,
+        "i-India"@zu ;
+    gn:parentFeature <https://sws.geonames.org/11812257/>,
+        <https://sws.geonames.org/7729895/> ;
+    gn:population "1352617328" ;
+    gn:wikipediaArticle <https://en.wikipedia.org/wiki/India>,
+        <https://ru.wikipedia.org/wiki/%D0%98%D0%BD%D0%B4%D0%B8%D1%8F> ;
+    rdfs:isDefinedBy <https://sws.geonames.org/1269750/about.rdf> ;
+    rdfs:seeAlso <https://dbpedia.org/resource/India> ;
+    wgs84_pos:lat "22" ;
+    wgs84_pos:long "79" .
+

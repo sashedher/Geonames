@@ -1,0 +1,7 @@
+geocoder==1.38.1
+matplotlib==3.2.2
+networkx==2.6.3
+pandas==1.3.5
+pydotplus
+rdflib==6.2.0
+IPython==7.9.0

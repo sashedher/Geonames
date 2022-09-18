@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{result['city']}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .home_lay{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: #008B8B;
+    position:fixed;
+    left:10px;
+    top:5px;
+    }
+  </style>
+</head>
+<body style="padding:50px 300px 200px 300px">
+  <h2>{{result['city']}}</h2>
+  <!-- <a href="/" class="home">Home</a> -->
+  <button onclick="location.href='/'" type="button" class="home_lay">Home</button
+  <div class="accordion" id="accordionExample"> 
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Basic Info
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              {% for a, b in result['sentences'].items() %}
+              <!-- {% if b.startswith('https:')%}
+                <tr>
+                    <td>{{ a }}</td><td><a href="{{ b }}">{{b}}</a></td>
+                </tr>
+              {% else %}
+                <tr>
+                    <td>{{ a }}</td><td>{{b}}</td>
+                </tr>
+              {% endif %} -->
+              <tr>
+                <td>{{b}}</td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Nearby locations
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              {% for a, b in result['nearbys'].items() %}
+                <tr>
+                    <td><a target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td><td><a href="{{ a }}">{{b}}</a></td>
+                </tr>        
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Neighbouring Locations
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              {% for a, b in result['neighbours'].items() %}
+                <tr>
+                    <td><a target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td><td><a href="{{ a }}">{{b}}</a></td>
+                </tr>        
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Child Locations
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              {% for a, b in result['contains'].items() %}
+                <tr>
+                    <td><a target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td><td><a href="{{ a }}">{{b}}</a></td>
+                </tr>        
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
