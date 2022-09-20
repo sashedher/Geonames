@@ -1,4 +1,4 @@
-apturl
+apturlCould>=0.5.2 (from versions: none)
 bcrypt==3.1.7
 blinker==1.4
 Brlapi==0.7.0
