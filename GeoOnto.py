@@ -67,9 +67,9 @@ def cities_info(qry, grph):
     type(result_r)
     cities = dict()
     i = 0
-    for s, p, o in result_r:
+    for s, o in result_r:
         i = i + 1
         # print(s, p, o)
-        cities[str(p)] = str(o)
+        cities[str(s)] = str(o)
 
     return cities
