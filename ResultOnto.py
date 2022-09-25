@@ -750,10 +750,10 @@ def query_citiesinfo(ipid, pred):
     PREFIX dcterms: <http://purl.org/dc/terms/>
     PREFIX :<https://sws.geonames.org/>
 
-    select ?name ?o ?s
-            WHERE {?s gn:"""+pred+""" <https://sws.geonames.org/""" + str(ipid) + """/>.
-            ?s gn:name ?o.
-            <https://sws.geonames.org/""" + str(ipid) + """/> gn:name ?name  }
+    select ?name ?s
+      WHERE {?s gn:"""+pred+""" <https://sws.geonames.org/"""+str(ipid)+"""/>.
+            ?s gn:name ?name.}
+      
     """
     return qery
 
@@ -790,19 +790,25 @@ def get_result(_id):
     # g_abox = GeoOnto.load_geo_onto()
     
     ip_id = GeoOnto.geoid(_id)
-    g_abox = ResultOntoIndiv.load_loc_info(ip_id)
-
+    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'about')
     qry = query_aboutinfo(ip_id)
     about = GeoOnto.about_info(qry, g_abox)
+    del g_abox
 
+    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'nearby')
     qry = query_citiesinfo(ip_id, "nearby")
     nearbys = GeoOnto.cities_info(qry, g_abox)
+    del g_abox
 
+    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'neighbours')
     qry = query_citiesinfo(ip_id, "neighbour")
     neighbours = GeoOnto.cities_info(qry, g_abox)
+    del g_abox
 
+    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'contains')
     qry = query_citiesinfo(ip_id, "parentFeature")
     contains = GeoOnto.cities_info(qry, g_abox)
+
     sentences = dict()
     sentences['temp1']=temp1(about['countryCode'],about['featureCode'])
     try:
