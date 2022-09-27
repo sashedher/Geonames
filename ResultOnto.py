@@ -786,9 +786,9 @@ def temp4(wiki)->str:
   return x;
 
 
-def get_result(_id):
+def get_result(_id,pred_list):
     # g_abox = GeoOnto.load_geo_onto()
-    
+    print(pred_list)
     ip_id = GeoOnto.geoid(_id)
     g_abox = ResultOntoIndiv.load_loc_info(ip_id,'about')
     qry = query_aboutinfo(ip_id)
