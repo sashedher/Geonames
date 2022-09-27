@@ -13,7 +13,9 @@ def hello():
 @app.route('/submit/', methods=['POST'])
 def submit():
     data = request.form
-    result = get_result(data['city'])
+    preds=request.form.getlist('predicate')
+    result = get_result(data['city'],preds)
+    result['preds_list']=preds
     result['base_url'] = request.base_url.replace('/submit/', '')
     result['city'] = data['city'].upper()
     return render_template('result.html', result=result)
