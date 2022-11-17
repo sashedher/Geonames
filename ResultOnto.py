@@ -1,6 +1,7 @@
 import GeoOnto
 # from pprint import pprint
 import ResultOntoIndiv
+import openAI
 
 print("\n\n-----------------------------India----------------------\n\n")
 Feature_code={
@@ -785,6 +786,15 @@ def temp4(wiki)->str:
   x="More details about feature is explained in this wikipedia document : "+wiki
   return x;
 
+def keyWordSentence(pred_list,about):
+    res="The location name is "+about['name']+". "
+    for x in pred_list:
+      try:
+        res += "The "+x+" for the selected location is "+about[x]+". "
+      except:
+        res= res
+    return res
+
 
 def get_result(_id,pred_list):
     # g_abox = GeoOnto.load_geo_onto()
@@ -793,6 +803,7 @@ def get_result(_id,pred_list):
     g_abox = ResultOntoIndiv.load_loc_info(ip_id,'about')
     qry = query_aboutinfo(ip_id)
     about = GeoOnto.about_info(qry, g_abox)
+    # print(about)
     del g_abox
 
     g_abox = ResultOntoIndiv.load_loc_info(ip_id,'nearby')
@@ -810,7 +821,11 @@ def get_result(_id,pred_list):
     contains = GeoOnto.cities_info(qry, g_abox)
 
     sentences = dict()
-    sentences['temp1']=temp1(about['countryCode'],about['featureCode'])
+    try:
+        sentences['temp1']=temp1(about['countryCode'],about['featureCode'])
+    except:
+        sentences['temp1']=temp1('IN',about['featureCode'])
+
     try:
         sentences['temp2']=temp2(about['name'],about['population'],about['postalCode']) # add postal only when available
     except:
@@ -828,5 +843,8 @@ def get_result(_id,pred_list):
     #
     # print("\n----------------------------- contains cities------------------\n")
     # pprint(contains)
+    keysent=keyWordSentence(pred_list,about)
+    sentences['openAI']= openAI.generate_sentence(keysent)
+    print("sentence from OpenAi  \n"+sentences['openAI'])
     del g_abox
     return result
