@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return render_template('Input_1.html')
+    return render_template('home.html')
 
 
 @app.route('/submit/', methods=['POST'])
@@ -18,7 +18,7 @@ def submit():
     result['preds_list']=preds
     result['base_url'] = request.base_url.replace('/submit/', '')
     result['city'] = data['city'].upper()
-    return render_template('result.html', result=result)
+    return render_template('response.html', result=result)
 
 
 @app.route('/open/<city>', methods=['GET'])
