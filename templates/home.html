@@ -14,17 +14,13 @@
     }
 
     .home_lay{
-        -webkit-appearance: button;
-        -moz-appearance: button;
-        appearance: button;
-
         text-decoration: none;
-        color: #008B8B;
-        position:fixed;
-        left:10px;
-        top:5px;
+        background-color: transparent;
+        border: none;
+        color: #0d6efd;
     }
   </style>
+  <script src="https://kit.fontawesome.com/ea1b4a945d.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -36,6 +32,8 @@
 </div>
   
 <div class="container mt-5">
+<button style="margin-bottom:20px;" onclick="location.href='/'" type="button" class="home_lay"><i class="fa fa-home text-primary"></i> Home</button>
+
   <div class="row">
     <div class="col-sm-3">
         <form class="form-control p-4" action="/submit" method="post" id="my-form">
