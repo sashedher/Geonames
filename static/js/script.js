@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cityName.value = city.value;
     form.addEventListener('submit', (event)=>{
         getRespone(event, formData, form);
+        form.reset();
     });
+    
 });
 
 function getRespone(event, formData, form) {

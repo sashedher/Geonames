@@ -839,11 +839,14 @@ def temp1(ctrycode,fcl=None)->str:
   st=st+"\nThe more specific details are, it is "+SubFeature_Code[fcl[0]][fcl[2:]].upper()
   return st
 
-def temp2(offname,popln,poscd='000000')->str:
+def temp2(offname,popln='000',poscd='000000')->str:
   if(poscd!='000000'):
     x="The official name of the location is "+ offname.upper()+" which has a population of around "+ popln .upper()+" with the postal code is "+poscd
   else:
-    x="The official name of the location is "+ offname.upper()+" which has a population of around "+ popln .upper()+". "
+    if(popln!='000'):
+      x="The official name of the location is "+ offname.upper()+" which has a population of around "+ popln .upper()+". "
+    else:
+      x="The official name of the location is "+ offname.upper()
   return x;
 
 def temp3(map,lat,logt)->str:
@@ -939,14 +942,17 @@ def get_result(_id,pred_list):
     try:
         sentences['temp2']=temp2(about['name'],about['population'],about['postalCode']) # add postal only when available
     except:
+      try:
         sentences['temp2']=temp2(about['name'],about['population'])
+      except:
+        sentences['temp2']=temp2(about['name'])
     sentences['temp3']=temp3(about['locationMap'],about['lat'],about['long'])
     try:
       sentences['temp4']=temp4(about['wikipediaArticle'])
     except:
       sentences['temp4']="No wikipedia article found"
 
-    result = {'about': about, 'nearbys': nearbys, 'neighbours': neighbours, 'contains': contains, 'sentences':sentences}
+    
     # pprint(about)
 
     # print("\n----------------------------- nearby cities------------------\n")
@@ -957,8 +963,89 @@ def get_result(_id,pred_list):
     #
     # print("\n----------------------------- contains cities------------------\n")
     # pprint(contains)
+    
+    
     keysent=keyWordSentence(pred_list,about)
     sentences['openAI']= openAI.generate_sentence(keysent)
+    result = {'about': about, 'nearbys': nearbys, 'neighbours': neighbours, 'contains': contains, 'sentences':sentences}
+    
+    nersen= ""
+    if 'Nearbys' in pred_list:
+      if(len(nearbys) == 0):
+        nersen ="There is no info about nearby places for "+about['name']
+      else:
+        nersen = "The following list of locations are near to "+about['name']+" are "
+      result['nersen'] = nersen;
+    
+    neisen= ""
+    if 'Neighbours' in pred_list:
+      if(len(neighbours) == 0):
+        neisen ="There is no info about neighbouring location for "+about['name']
+      else:
+        neisen = "The following list of locations are neighbour to"+about['name']+" are "
+      result['neisen'] = neisen;
+    
+    consen= ""
+    if 'contains' in pred_list:
+      if(len(contains) == 0):
+        consen ="There is no info about child locations for "+about['name']
+      else:
+        consen = "The following list of locations are contained inside "+about['name']+" are "
+      result['consen'] = consen;
+    
+    count = 0
+    colList, temp = [], []
+    print(contains.keys())
+    for a in contains.keys():
+      temp.append(a)
+      count+=1
+      if count==5:
+        colList.append(temp.copy())
+        temp.clear()
+        count = 0
+    if len(temp)>0:
+        colList.append(temp.copy())
+    count = 0
+    nerList, n1 = [], []
+    print(contains.keys())
+    for a in nearbys.keys():
+      n1.append(a)
+      count+=1
+      if count==5:
+        nerList.append(n1.copy())
+        n1.clear()
+        count = 0
+    if len(n1)>0:
+        nerList.append(n1.copy())
+    count = 0
+    neiList, n2 = [], []
+    print(contains.keys())
+    for a in neighbours.keys():
+      n2.append(a)
+      count+=1
+      if count==5:
+        neiList.append(n2.copy())
+        n2.clear()
+        count = 0
+    if len(n2)>0:
+        colList.append(n2.copy())
     print("sentence from OpenAi"+sentences['openAI'])
+    
+    result['nerList'] = nerList
+    # print(result['containslist'])
+    
+    result['neiList'] = neiList
+    # print(result['containslist'])
+    
+    
+    result['containslist'] = colList
+    result['nearbysize'] = len(nearbys)
+    result['neighboursize'] = len(neighbours)
+    result['containsize'] = len(contains)
+    print(result['nearbys'])
+    
+    
     del g_abox
+    
+    
     return result

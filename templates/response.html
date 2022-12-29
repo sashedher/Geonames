@@ -4,20 +4,18 @@
 <!-- <a href="/" class="home">Home</a> -->
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
+  
   <li class="nav-item">
-    <a class="nav-link active" data-bs-toggle="tab" href="#home">Basic Info</a>
+    <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Specific INFO</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" href="#menu1">Features Selected</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-bs-toggle="tab" href="#menu2">nearbys</a>
+    <a class="nav-link" data-bs-toggle="tab" href="#menu2">Basic INFO</a>
   </li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane container active" id="home">
+  <!--<div class="tab-pane container active" id="home">
     <div class="table-responsive">
       <table class="table table-striped">
         {% for a, b in result['sentences'].items() %}
@@ -29,24 +27,70 @@
           <tr>
               <td>{{ a }}</td><td>{{b}}</td>
           </tr>
-        {% endif %} -->
+        {% endif %} 
         <tr>
           <td>{{b}}</td>
         </tr>
         {% endfor %}
       </table>
     </div>
-  </div>
-  <div class="tab-pane container fade" id="menu1">
+  </div>-->
+  <div class="tab-pane container active" id="menu1">
     <div class="table-responsive">
       <table class="table table-striped">
-        {% for a in result['preds_list']%}
+        <!--{% for a in result['preds_list']%}
           <tr>
               <td><a target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td><td><a href="{{ a }}">{{b}}</a></td>
           </tr>        
-        {% endfor %}
+        {% endfor %}-->
         <tr>
-          <td>{{result['sentences']['openAI']}}</td>
+          <td colspan="5">{{result['sentences']['openAI']}}</td>
+          
+        </tr>
+        <tr>
+          {% if 'nersen' in result.keys()%}
+            <td colspan="5">{{result['nersen']}} </td>
+            {% if result['nearbysize'] != 0 %}
+              {% for x in result['nerList'] %}
+                  <tr>
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                {% endfor %}
+
+            {% endif %}
+          {% endif %}
+        </tr>
+        <tr>
+          {% if 'neisen' in result.keys()%}
+            <td colspan="5">{{result['neisen']}} </td>
+            {% if result['neighboursize'] != 0 %}
+              {% for x in result['nerList'] %}
+                  <tr>
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                {% endfor %}
+
+            {% endif %}
+          {% endif %}
+        </tr>
+        <tr>
+          {% if 'consen' in result.keys()%}
+            <td colspan="5">{{result['consen']}} </td>
+            {% if result['containsize'] != 0 %}
+              {% for x in result['containslist'] %}
+                  <tr>
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                {% endfor %}
+
+            {% endif %}
+          {% endif %}
         </tr>
       </table>
     </div>
@@ -93,12 +137,16 @@
           <div class="accordion-body">
             <div class="table-responsive">
               <table class="table table-striped">
-                {% for a, b in result['nearbys'].items() %}
-                  <tr>
-                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td>
-                  </tr>        
+                            
+                {% for x in result['nerList'] %}
+                <tr>
+                  
+                  {% for y in x%}
+                    <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                  {% endfor %}                  
+                </tr>
                 {% endfor %}
-              </table>
+            </table>
             </div>
           </div>
         </div>
@@ -114,13 +162,16 @@
           <div class="accordion-body">
             <div class="table-responsive">
               <table class="table table-striped">
-                {% for a, b in result['neighbours'].items() %}
-                   
-                  <tr>
-                    <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td>
+                            
+                {% for x in result['neiList'] %}
+                <tr rowspan=5>
+                  
+                  {% for y in x%}
+                    <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                  {% endfor %}                  
                 </tr>
                 {% endfor %}
-              </table>
+            </table>
             </div>
           </div>
         </div>
@@ -136,11 +187,15 @@
           <div class="accordion-body">
             <div class="table-responsive">
               <table class="table table-striped">
-                {% for a, b in result['contains'].items() %}
+                            
+                  {% for x in result['containslist'] %}
                   <tr>
-                    <td><a data-bs-toggle="modal" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td>
-                </tr>
-                {% endfor %}
+                    
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                  {% endfor %}
               </table>
             </div>
           </div>
@@ -223,21 +278,27 @@
                         </div>
                   
                         <div class="cat property">
-                            <label>
-                                <input type="checkbox" name="predicate" value="locationMap"><span> Map</span>
-                            </label>
+                          <label>
+                              <input type="checkbox" name="predicate" value="Coordinates"><span>Coordinates</span>
+                          </label>
                         </div>
-                  
-                        <div class="cat property">
-                            <label>
-                                <input type="checkbox" name="predicate" value="Coordinates"><span> Coordinates</span>
-                            </label>
+                
+                          <div class="cat property">
+                          <label>
+                              <input type="checkbox" name="predicate" value="Nearbys"><span>Nearbys</span>
+                          </label>
                         </div>
-                  
+                
+                          <div class="cat property">
+                          <label>
+                              <input type="checkbox" name="predicate" value="Neighbours"><span>Neighbouring Locations</span>
+                          </label>
+                        </div>
+                
                         <div class="cat property">
-                            <label>
-                                <input type="checkbox" name="predicate" value="wikipediaArticle"><span> Wikipedia</span>
-                            </label>
+                          <label>
+                              <input type="checkbox" name="predicate" value="contains"><span>Child Locations</span>
+                          </label>
                         </div><br/>
             
                         <div style="display: block;" class="d-grid">
