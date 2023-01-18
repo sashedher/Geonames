@@ -3,7 +3,7 @@ from rdflib import Graph
 def load_loc_info(id,type):
     g_aBox = Graph()
 
-    url='https://www.geonames.org/'+str(id)+'/'+type+'.rdf'
+    url='https://sws.geonames.org/'+str(id)+'/'+type+'.rdf'
     try:
         g_aBox.parse(url)
         # print("{}:  {}".format(i,url))

@@ -1,6 +1,10 @@
-import GeoOnto
-# from pprint import pprint
-import ResultOntoIndiv
+# import GeoOnto
+from rdflib import Graph
+import geocoder
+import re
+from pprint import pprint
+# import ResultOntoIndiv
+import openAI
 
 print("\n\n-----------------------------India----------------------\n\n")
 Feature_code={
@@ -718,6 +722,68 @@ SubFeature_Code={
                 },
 }
 
+def geoid(ip):
+    g = geocoder.geonames(ip, key='sashedher')
+    ip_id = g.geonames_id
+    # print(ip_id)
+    return ip_id
+
+
+def load_geo_onto():
+    g_aBox = Graph()
+    g_aBox.parse("Dataset.ttl")
+    g_aBox.parse("ontology_v3.2.rdf")
+    return g_aBox
+
+
+def OntoMatch1(strg) -> bool:
+    Onto = re.compile(r"http://www.geonames.org/ontology")
+    return Onto.match(strg) is not None
+
+
+def OntoMatch2(strg) -> bool:
+    Onto = re.compile(r"http://www.w3.org/2003/01/geo/wgs84_pos")
+    return Onto.match(strg) is not None
+
+
+def about_info(qry, grph):
+    alternateName = "http://www.geonames.org/ontology#alternateName"
+    officialName = "http://www.geonames.org/ontology#officialName"
+    # postalCode="http://www.geonames.org/ontology#postalCode"
+    namespace = "http://www.geonames.org/ontology#"
+    coords = "http://www.w3.org/2003/01/geo/wgs84_pos#"
+    i = 0
+    result_r = grph.query(qry)
+    about = dict()
+    for subj, pred, obj in result_r:
+        if str(pred) != alternateName and str(pred) != officialName:
+            if OntoMatch1(str(pred)):
+                i = i + 1
+                x = str(pred)
+                x = x.replace(namespace, '')
+                # print("{:>20} {:>30} ".format(x,obj))
+                about[x] = str(obj)
+            if OntoMatch2(str(pred)):
+                x = str(pred)
+                x = x.replace(coords, '')
+                # print("{:>20} {:>30} ".format(x,obj))
+                about[x] = str(obj)
+    # print(about)
+    return about
+
+
+def cities_info(qry, grph):
+    result_r = grph.query(qry)
+    type(result_r)
+    cities = dict()
+    i = 0
+    for s, o in result_r:
+        i = i + 1
+        # print(s, p, o)
+        cities[str(s)] = str(o)
+
+    return cities
+
 def query_aboutinfo(ipid):
     qery = """
     
@@ -757,7 +823,10 @@ def query_citiesinfo(ipid, pred):
     """
     return qery
 
-def temp1(ctrycode,fcl)->str:
+def temp1(ctrycode,fcl=None)->str:
+  if(fcl is  None):
+    st="This geographical location belongs to the country "+ ctrycode.upper()+". "
+    return st
   namespace="https://www.geonames.org/ontology#"
   fcl=fcl.replace(namespace,'')
   fc=Feature_code[fcl[0]]
@@ -770,11 +839,14 @@ def temp1(ctrycode,fcl)->str:
   st=st+"\nThe more specific details are, it is "+SubFeature_Code[fcl[0]][fcl[2:]].upper()
   return st
 
-def temp2(offname,popln,poscd='000000')->str:
+def temp2(offname,popln='000',poscd='000000')->str:
   if(poscd!='000000'):
     x="The official name of the location is "+ offname.upper()+" which has a population of around "+ popln .upper()+" with the postal code is "+poscd
   else:
-    x="The official name of the location is "+ offname.upper()+" which has a population of around "+ popln .upper()+". "
+    if(popln!='000'):
+      x="The official name of the location is "+ offname.upper()+" which has a population of around "+ popln .upper()+". "
+    else:
+      x="The official name of the location is "+ offname.upper()
   return x;
 
 def temp3(map,lat,logt)->str:
@@ -785,39 +857,102 @@ def temp4(wiki)->str:
   x="More details about feature is explained in this wikipedia document : "+wiki
   return x;
 
+def keyWordSentence(pred_list,about):
+    res="The location name is "+about['name']+". "
+    for x in pred_list:
+
+      try:
+
+        if(x == 'countryCode'):
+          res += "This geographical location belongs to the country "+about[x]+". "
+
+        if(x == 'featureCode'):
+          namespace="https://www.geonames.org/ontology#"
+          fcl= about[x]
+          fcl=fcl.replace(namespace,'')
+          print(fcl)
+          fc=Feature_code[fcl[0]]
+          st="This geographical location is classified as "
+          for ftr in fc:
+            st=st+str(ftr.upper())+" "
+          st=st+". "
+          st=st+"\nThe more specific details are, it is "+SubFeature_Code[fcl[0]][fcl[2:]].upper()
+          print(st)
+          res += st 
+
+
+        if(x== 'postalCode' or x == 'population'):
+          res += "The "+x+" for "+about['name']+" is "+about[x]+". "
+        
+        if(x=='Coordinates'):
+          res += about['name']+" is cooordinated at a point lat is "+about['lat']+" and long is "+about['long']+". "
+
+        if(x == 'locationMap' or x == 'wikipediaArticle'):
+          res += "The "+x+" is avilable in "+about[x]+" "
+      except:
+        res= res
+    print(res)
+    return res
+
+def load_loc_info(id,type):
+    g_aBox = Graph()
+
+    url='https://sws.geonames.org/'+str(id)+'/'+type+'.rdf'
+    try:
+        g_aBox.parse(url)
+        # print("{}:  {}".format(i,url))
+    except:
+        print("This feature does not have this type of rdf file or invalid id")
+
+    return g_aBox
 
 def get_result(_id,pred_list):
     # g_abox = GeoOnto.load_geo_onto()
     print(pred_list)
-    ip_id = GeoOnto.geoid(_id)
-    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'about')
+    ip_id = geoid(_id)
+    print("input id for str is :"+str(ip_id))
+    # if(ip_id is None):
+
+    g_abox = load_loc_info(ip_id,'about')
     qry = query_aboutinfo(ip_id)
-    about = GeoOnto.about_info(qry, g_abox)
+    about = about_info(qry, g_abox)
+    pprint(about)
     del g_abox
 
-    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'nearby')
+    g_abox = load_loc_info(ip_id,'nearby')
     qry = query_citiesinfo(ip_id, "nearby")
-    nearbys = GeoOnto.cities_info(qry, g_abox)
+    nearbys = cities_info(qry, g_abox)
     del g_abox
 
-    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'neighbours')
+    g_abox = load_loc_info(ip_id,'neighbours')
     qry = query_citiesinfo(ip_id, "neighbour")
-    neighbours = GeoOnto.cities_info(qry, g_abox)
+    neighbours = cities_info(qry, g_abox)
     del g_abox
 
-    g_abox = ResultOntoIndiv.load_loc_info(ip_id,'contains')
+    g_abox = load_loc_info(ip_id,'contains')
     qry = query_citiesinfo(ip_id, "parentFeature")
-    contains = GeoOnto.cities_info(qry, g_abox)
+    contains = cities_info(qry, g_abox)
 
     sentences = dict()
-    sentences['temp1']=temp1(about['countryCode'],about['featureCode'])
+    try:
+        sentences['temp1']=temp1(about['countryCode'],about['featureCode'])
+    except:
+        sentences['temp1']=temp1('IN')
+
     try:
         sentences['temp2']=temp2(about['name'],about['population'],about['postalCode']) # add postal only when available
     except:
+      try:
         sentences['temp2']=temp2(about['name'],about['population'])
+      except:
+        sentences['temp2']=temp2(about['name'])
     sentences['temp3']=temp3(about['locationMap'],about['lat'],about['long'])
-    sentences['temp4']=temp4(about['wikipediaArticle'])
-    result = {'about': about, 'nearbys': nearbys, 'neighbours': neighbours, 'contains': contains, 'sentences':sentences}
+    try:
+      sentences['temp4']=temp4(about['wikipediaArticle'])
+    except:
+      sentences['temp4']="No wikipedia article found"
+
+    
     # pprint(about)
 
     # print("\n----------------------------- nearby cities------------------\n")
@@ -828,5 +963,89 @@ def get_result(_id,pred_list):
     #
     # print("\n----------------------------- contains cities------------------\n")
     # pprint(contains)
+    
+    
+    keysent=keyWordSentence(pred_list,about)
+    sentences['openAI']= openAI.generate_sentence(keysent)
+    result = {'about': about, 'nearbys': nearbys, 'neighbours': neighbours, 'contains': contains, 'sentences':sentences}
+    
+    nersen= ""
+    if 'Nearbys' in pred_list:
+      if(len(nearbys) == 0):
+        nersen ="There is no info about nearby places for "+about['name']
+      else:
+        nersen = "The following list of locations are near to "+about['name']+" are "
+      result['nersen'] = nersen;
+    
+    neisen= ""
+    if 'Neighbours' in pred_list:
+      if(len(neighbours) == 0):
+        neisen ="There is no info about neighbouring location for "+about['name']
+      else:
+        neisen = "The following list of locations are neighbour to"+about['name']+" are "
+      result['neisen'] = neisen;
+    
+    consen= ""
+    if 'contains' in pred_list:
+      if(len(contains) == 0):
+        consen ="There is no info about child locations for "+about['name']
+      else:
+        consen = "The following list of locations are contained inside "+about['name']+" are "
+      result['consen'] = consen;
+    
+    count = 0
+    colList, temp = [], []
+    print(contains.keys())
+    for a in contains.keys():
+      temp.append(a)
+      count+=1
+      if count==5:
+        colList.append(temp.copy())
+        temp.clear()
+        count = 0
+    if len(temp)>0:
+        colList.append(temp.copy())
+    count = 0
+    nerList, n1 = [], []
+    print(contains.keys())
+    for a in nearbys.keys():
+      n1.append(a)
+      count+=1
+      if count==5:
+        nerList.append(n1.copy())
+        n1.clear()
+        count = 0
+    if len(n1)>0:
+        nerList.append(n1.copy())
+    count = 0
+    neiList, n2 = [], []
+    print(contains.keys())
+    for a in neighbours.keys():
+      n2.append(a)
+      count+=1
+      if count==5:
+        neiList.append(n2.copy())
+        n2.clear()
+        count = 0
+    if len(n2)>0:
+        colList.append(n2.copy())
+    print("sentence from OpenAi"+sentences['openAI'])
+    
+    result['nerList'] = nerList
+    # print(result['containslist'])
+    
+    result['neiList'] = neiList
+    # print(result['containslist'])
+    
+    
+    result['containslist'] = colList
+    result['nearbysize'] = len(nearbys)
+    result['neighboursize'] = len(neighbours)
+    result['containsize'] = len(contains)
+    print(result['nearbys'])
+    
+    
     del g_abox
+    
+    
     return result

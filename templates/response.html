@@ -1,0 +1,319 @@
+<h2 style="display:inline-block;">{{result['city']}}</h2>
+<a target="_blank" style="float:right; margin-left:60px;font-size:25px;text-decoration:none;" href="{{result['about']['wikipediaArticle']}}"><i class="fa fa-wikipedia-w" aria-hidden="true"></i> Wiki</a>
+<a target="_blank" style="float:right;font-size:25px;text-decoration:none;" href="{{result['about']['locationMap']}}"><i class="fa-solid fa-map-location-dot"></i> Map</a>
+<!-- <a href="/" class="home">Home</a> -->
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  
+  <li class="nav-item">
+    <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Specific INFO</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-bs-toggle="tab" href="#menu2">Basic INFO</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <!--<div class="tab-pane container active" id="home">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        {% for a, b in result['sentences'].items() %}
+        <!-- {% if b.startswith('https:')%}
+          <tr>
+              <td>{{ a }}</td><td><a href="{{ b }}">{{b}}</a></td>
+          </tr>
+        {% else %}
+          <tr>
+              <td>{{ a }}</td><td>{{b}}</td>
+          </tr>
+        {% endif %} 
+        <tr>
+          <td>{{b}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>-->
+  <div class="tab-pane container active" id="menu1">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <!--{% for a in result['preds_list']%}
+          <tr>
+              <td><a target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td><td><a href="{{ a }}">{{b}}</a></td>
+          </tr>        
+        {% endfor %}-->
+        <tr>
+          <td colspan="5">{{result['sentences']['openAI']}}</td>
+          
+        </tr>
+        <tr>
+          {% if 'nersen' in result.keys()%}
+            <td colspan="5">{{result['nersen']}} </td>
+            {% if result['nearbysize'] != 0 %}
+              {% for x in result['nerList'] %}
+                  <tr>
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                {% endfor %}
+
+            {% endif %}
+          {% endif %}
+        </tr>
+        <tr>
+          {% if 'neisen' in result.keys()%}
+            <td colspan="5">{{result['neisen']}} </td>
+            {% if result['neighboursize'] != 0 %}
+              {% for x in result['nerList'] %}
+                  <tr>
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                {% endfor %}
+
+            {% endif %}
+          {% endif %}
+        </tr>
+        <tr>
+          {% if 'consen' in result.keys()%}
+            <td colspan="5">{{result['consen']}} </td>
+            {% if result['containsize'] != 0 %}
+              {% for x in result['containslist'] %}
+                  <tr>
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                {% endfor %}
+
+            {% endif %}
+          {% endif %}
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane container fade" id="menu2">
+    <div class="accordion" id="accordionExample"> 
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Basic Info
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                {% for a, b in result['sentences'].items() %}
+                <!-- {% if b.startswith('https:')%}
+                  <tr>
+                      <td>{{ a }}</td><td><a href="{{ b }}">{{b}}</a></td>
+                  </tr>
+                {% else %}
+                  <tr>
+                      <td>{{ a }}</td><td>{{b}}</td>
+                  </tr>
+                {% endif %} -->
+                <tr>
+                  <td>{{b}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Nearby locations
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                            
+                {% for x in result['nerList'] %}
+                <tr>
+                  
+                  {% for y in x%}
+                    <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                  {% endfor %}                  
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Neighbouring Locations
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                            
+                {% for x in result['neiList'] %}
+                <tr rowspan=5>
+                  
+                  {% for y in x%}
+                    <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                  {% endfor %}                  
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Child Locations
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                            
+                  {% for x in result['containslist'] %}
+                  <tr>
+                    
+                    {% for y in x%}
+                      <td><a data-bs-toggle="modal" onclick="closePopup(this.innerText)" data-bs-target="#myModal" target="_blank" href="{{result['base_url']}}/open/{{ y }}">{{ y }}</a></td>
+                    {% endfor %}                  
+                  </tr>
+                  {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            features selected
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                {% for a in result['preds_list']%}
+                  <tr>
+                      <td><a target="_blank" href="{{result['base_url']}}/open/{{ a }}">{{ a }}</a></td><td><a href="{{ a }}">{{b}}</a></td>
+                  </tr>        
+                {% endfor %}
+                <tr>
+                  <td>{{result['sentences']['openAI']}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-title">Geonames</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-control p-4" action="/submit" method="post" id="modal-form">
+            
+                        <div class="cat cat property">
+                            <label>
+                                <input type="checkbox" name="predicate" value="countryCode"><span> Country Code</span>
+                            </label>
+                        </div>
+                        
+                        <div class="cat cat property">
+                            <label>
+                                <input type="checkbox" name="predicate" value="featureCode"><span> Feature Code</span>
+                            </label>
+                        </div>
+                  
+                        <div class="cat property">
+                            <label>
+                                <input type="checkbox" name="predicate" value="name"><span> Name</span>
+                            </label>
+                        </div>
+                  
+                        <div class="cat property">
+                            <label>
+                                <input type="checkbox" name="predicate" value="population"><span> Population</span>
+                            </label>
+                        </div>
+                  
+                        <div class="cat property">
+                            <label>
+                                <input type="checkbox" name="predicate" value="postalCode"><span> Postal Code</span>
+                            </label>
+                        </div>
+                  
+                        <div class="cat property">
+                          <label>
+                              <input type="checkbox" name="predicate" value="Coordinates"><span>Coordinates</span>
+                          </label>
+                        </div>
+                
+                          <div class="cat property">
+                          <label>
+                              <input type="checkbox" name="predicate" value="Nearbys"><span>Nearbys</span>
+                          </label>
+                        </div>
+                
+                          <div class="cat property">
+                          <label>
+                              <input type="checkbox" name="predicate" value="Neighbours"><span>Neighbouring Locations</span>
+                          </label>
+                        </div>
+                
+                        <div class="cat property">
+                          <label>
+                              <input type="checkbox" name="predicate" value="contains"><span>Child Locations</span>
+                          </label>
+                        </div><br/>
+            
+                        <div style="display: block;" class="d-grid">
+                            <button type="submit" onclick="submitData()" data-bs-dismiss="modal" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                      </form>
+                </div>
+              </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" hidden>Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

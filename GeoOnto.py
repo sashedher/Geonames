@@ -58,7 +58,7 @@ def about_info(qry, grph):
                 x = x.replace(coords, '')
                 # print("{:>20} {:>30} ".format(x,obj))
                 about[x] = str(obj)
-
+    # print(about)
     return about
 
 
