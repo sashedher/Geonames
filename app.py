@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from ResultOnto import get_result
+from GeoData import get_result
 
 
 app = Flask(__name__)
@@ -21,13 +21,13 @@ def submit():
     return render_template('response.html', result=result)
 
 
-@app.route('/open/<city>', methods=['GET'])
-def open(city):
-    # data = request.form
-    result = get_result(city)
-    result['base_url'] = request.base_url.replace(request.base_url, 'http://127.0.0.1:5000')
-    result['city'] = city.upper()
-    return render_template('result.html', result=result)
+# @app.route('/open/<city>', methods=['GET'])
+# def open(city):
+#     # data = request.form
+#     result = get_result(city)
+#     result['base_url'] = request.base_url.replace(request.base_url, 'http://127.0.0.1:5000')
+#     result['city'] = city.upper()
+#     return render_template('result.html', result=result)
 
 
 if __name__ == '__main__':
